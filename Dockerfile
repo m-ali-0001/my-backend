@@ -1,7 +1,4 @@
-FROM node:alpine
-WORKDIR /usr/app
-RUN apk update && apk add libstdc++ && apk add build-base && apk add python3 && apk add bash
-COPY . .
-RUN npm install
-COPY . .
-CMD ["npm", "run", "start"]
+FROM openjdk:jdk-alpine
+MAINTAINER baeldung.com
+COPY target/demo-0.0.1-SNAPSHOT.jar message-server-1.0.0.jar
+ENTRYPOINT ["java","-jar","/message-server-1.0.0.jar"]
